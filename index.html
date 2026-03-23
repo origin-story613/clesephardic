@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleveland Sephardic Congregation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Lora', serif; 
+            background-color: #fdfcf0; 
+            color: #2d2d2d;
+        }
+        h1, h2, h3, .shul-font { 
+            font-family: 'Playfair Display', serif; 
+            color: #1a365d; 
+        }
+        .sephardic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 30-15 30L15 30z' fill='%23b4975a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .border-decorative {
+            border: 4px double #b4975a;
+        }
+        .btn-traditional {
+            background-color: #1a365d;
+            border: 1px solid #b4975a;
+            color: #fdfcf0;
+            transition: all 0.3s;
+        }
+        .btn-traditional:hover {
+            background-color: #b4975a;
+            color: white;
+        }
+    </style>
+</head>
+<body class="sephardic-pattern">
+
+    <!-- Header / Logo Area -->
+    <header class="py-10 text-center border-b border-stone-200">
+        <h1 class="text-4xl md:text-5xl font-black mb-2 tracking-tight uppercase">Cleveland Sephardic</h1>
+        <h2 class="text-xl md:text-2xl tracking-widest text-stone-600 font-light">CONGREGATION</h2>
+        <p class="italic text-amber-800 mt-3 text-lg">“A unified home for the diverse traditions of Sephardic and Mizrachi Jewry”</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="flex justify-center space-x-8 py-4 sticky top-0 bg-[#fdfcf0]/90 backdrop-blur-sm border-b border-stone-200 z-50 text-sm font-bold uppercase tracking-wide">
+        <a href="#about" class="hover:text-amber-700 transition">Our Kehilla</a>
+        <a href="#tefilla" class="hover:text-amber-700 transition">Tefilla Times</a>
+        <a href="#location" class="hover:text-amber-700 transition">Contact</a>
+        <a href="https://www.charidy.com/clevelandsephardi" target="_blank" class="text-amber-700 hover:underline">Donate</a>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        
+        <!-- Welcome / About Section -->
+        <section id="about" class="mb-20 text-center">
+            <h3 class="text-3xl mb-6 italic">Who and What We Are</h3>
+            <div class="text-lg leading-relaxed text-stone-700 space-y-6">
+                <p>
+                    The Cleveland Sephardic Congregation is a vibrant community in Beachwood dedicated to the preservation of our shared heritage. We provide a warm and welcoming environment for prayer, learning, and growth.
+                </p>
+                <p class="font-semibold text-blue-900">
+                    Our congregation is a beautiful mosaic of the Jewish world. 
+                </p>
+                <p>
+                    Whether your family’s traditions hail from <strong>Bukhara, Morocco, Iraq, Turkey, Ethiopia, or Persia</strong>, you will find a home with us. We take pride in the diversity of our members, coming together as one heart to maintain the timeless melodies and customs of the <em>Edot HaMizrach</em>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tefilla Times (The "Shul Flyer" Look) -->
+        <section id="tefilla" class="mb-20">
+            <div class="border-decorative p-8 md:p-12 bg-white shadow-sm relative">
+                <!-- Decorative Corner Accents -->
+                <div class="absolute top-2 left-2 text-amber-600/30 text-xs">◈</div>
+                <div class="absolute top-2 right-2 text-amber-600/30 text-xs">◈</div>
+                <div class="absolute bottom-2 left-2 text-amber-600/30 text-xs">◈</div>
+                <div class="absolute bottom-2 right-2 text-amber-600/30 text-xs">◈</div>
+
+                <h3 class="text-center text-3xl mb-2">Upcoming Schedule</h3>
+                <p class="text-center text-stone-500 mb-8 italic">Standard Weekly Services</p>
+                
+                <div id="tefilla-loading" class="text-center italic text-stone-400">Updating times from the calendar...</div>
+                
+                <div id="tefilla-content" class="hidden space-y-10">
+                    <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                        <div>
+                            <h4 class="text-xl font-bold text-stone-800 underline decoration-amber-500/30 underline-offset-4">Friday Evening</h4>
+                            <p class="text-stone-600 italic">Mincha, Kabbalat Shabbat & Arvit</p>
+                        </div>
+                        <div id="friday-mincha-time" class="text-3xl font-bold mt-4 md:mt-0 text-blue-900">--:--</div>
+                    </div>
+
+                    <div class="border-t border-stone-100"></div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                        <div>
+                            <h4 class="text-xl font-bold text-stone-800 underline decoration-amber-500/30 underline-offset-4">Shabbat Afternoon</h4>
+                            <p class="text-stone-600 italic">Mincha & Seudah Shlishit</p>
+                        </div>
+                        <div id="shabbat-mincha-time" class="text-3xl font-bold mt-4 md:mt-0 text-blue-900">--:--</div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-stone-50 border-l-4 border-amber-600/20 text-sm text-stone-600 leading-relaxed">
+                        <strong>Note:</strong> We meet on Friday evenings and Shabbat afternoons. Shabbat Mincha is held exactly 24 hours and 5 minutes after the Friday Mincha time. For Holiday or special event schedules, please contact us directly.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Contact -->
+        <section id="location" class="grid md:grid-cols-2 gap-12 items-start pt-10 border-t border-stone-200">
+            <div>
+                <h3 class="text-2xl mb-4 italic">Join Us</h3>
+                <p class="text-stone-700 mb-4">
+                    Our services are held in <strong>Beachwood, Ohio</strong>. To maintain the security and privacy of our congregants, we provide our exact location upon inquiry.
+                </p>
+                <div class="space-y-1 text-stone-800">
+                    <p><strong>Phone:</strong> (617) 631-7117</p>
+                    <p><strong>Email:</strong> contact@clesephardic.com</p>
+                </div>
+            </div>
+            <div class="bg-stone-100 p-8 border border-stone-200 text-center">
+                <h3 class="text-2xl mb-4 italic text-blue-900">Support the Kehilla</h3>
+                <p class="text-sm mb-6 text-stone-600">Your contributions allow us to maintain our minyan and grow our community programs.</p>
+                <a href="https://www.charidy.com/clevelandsephardi" target="_blank" class="btn-traditional inline-block px-8 py-3 w-full font-bold shadow-md">Make a Donation</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-20 text-stone-400 text-sm uppercase tracking-widest">
+        <p>© 2024 Cleveland Sephardic Congregation</p>
+        <p class="mt-1">Beachwood, Ohio</p>
+    </footer>
+
+    <!-- JavaScript Logic (No changes needed, still pulls from Hebcal) -->
+    <script>
+        async function updateTefillaTimes() {
+            const CLEVELAND_GEONAME_ID = '5150529';
+            const apiUrl = `https://www.hebcal.com/shabbat?cfg=json&geonameid=${CLEVELAND_GEONAME_ID}&M=on`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const candleEvent = data.items.find(item => item.category === 'candles');
+
+                if (candleEvent) {
+                    const candleDate = new Date(candleEvent.date);
+                    const friMinchaDate = new Date(candleDate.getTime() - (10 * 60 * 1000));
+                    const satMinchaDate = new Date(friMinchaDate.getTime() + (24 * 60 + 5) * 60 * 1000);
+
+                    const timeFormatter = new Intl.DateTimeFormat('en-US', {
+                        hour: 'numeric', minute: '2-digit', hour12: true
+                    });
+
+                    document.getElementById('friday-mincha-time').innerText = timeFormatter.format(friMinchaDate);
+                    document.getElementById('shabbat-mincha-time').innerText = timeFormatter.format(satMinchaDate);
+
+                    document.getElementById('tefilla-loading').classList.add('hidden');
+                    document.getElementById('tefilla-content').classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error("Error fetching times:", error);
+                document.getElementById('tefilla-loading').innerText = "Please contact us for this week's times.";
+            }
+        }
+        window.addEventListener('DOMContentLoaded', updateTefillaTimes);
+    </script>
+</body>
+</html>
