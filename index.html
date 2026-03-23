@@ -151,52 +151,71 @@
         <p class="mt-2">Beachwood, Ohio | Authentically Sephardic</p>
     </footer>
 
-    <script>
-        async function fetchShabbatTimes() {
-            const GEO_ID = '5150529'; // Cleveland
-            const url = `https://www.hebcal.com/shabbat?cfg=json&geonameid=${GEO_ID}&M=on&leyning=off`;
+<script>
+    async function fetchShabbatTimes() {
+        const GEO_ID = '5150529'; // Cleveland
+        const url = `https://www.hebcal.com/shabbat?cfg=json&geonameid=${GEO_ID}&M=on&leyning=off`;
 
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
 
-                // Extract Hebcal data
-                const candleEvent = data.items.find(i => i.category === 'candles');
-                const havdalahEvent = data.items.find(i => i.category === 'havdalah');
-                const parshaEvent = data.items.find(i => i.category === 'parashat');
+            // 1. Find the specific events in the Hebcal items array
+            const candleEvent = data.items.find(i => i.category === 'candles');
+            const havdalahEvent = data.items.find(i => i.category === 'havdalah');
+            const parshaEvent = data.items.find(i => i.category === 'parashat');
+            
+            // Look for a special Shabbat name (like Shabbat HaGadol), otherwise default to "Shabbat"
+            const specialShabbat = data.items.find(i => i.memo && i.memo.includes('Shabbat'));
+            const shabbatTitle = specialShabbat ? specialShabbat.title : "Shabbat";
+
+            if (candleEvent) {
+                // Create a reusable time formatter (e.g., 7:27 PM)
+                const timeFormat = new Intl.DateTimeFormat('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit', 
+                    hour12: true 
+                });
+
+                // Convert ISO strings from API to JavaScript Date objects
+                const candleDate = new Date(candleEvent.date);
                 
-                // Identify Shabbat Title (e.g., "Parashat Tzav" or "Shabbat HaGadol")
-                const shabbatTitle = data.items.find(i => i.memo && i.memo.includes('Shabbat'))?.title || "Shabbat";
+                // 2. Calculate Tefilla Times based on your custom logic
+                // Friday Mincha: 10 mins before candles
+                const friMincha = new Date(candleDate.getTime() - (10 * 60 * 1000));
+                // Shabbat Mincha: 24h + 5m after Friday Mincha
+                const satMincha = new Date(friMincha.getTime() + (24 * 60 + 5) * 60 * 1000);
 
-                if (candleEvent) {
-                    const candleDate = new Date(candleEvent.date);
-                    
-                    // Calculation logic per user request:
-                    // Friday Mincha: 10 mins before candles
-                    const friMincha = new Date(candleDate.getTime() - (10 * 60 * 1000));
-                    // Shabbat Mincha: 24h + 5m after Friday Mincha
-                    const satMincha = new Date(friMincha.getTime() + (24 * 60 + 5) * 60 * 1000);
-
-                    const timeFormat = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-
-                    // Update UI
-                    document.getElementById('candle-time').innerText = candleEvent.display;
-                    document.getElementById('havdalah-time').innerText = havdalahEvent ? havdalahEvent.display : '--';
-                    document.getElementById('parsha-name').innerText = parshaEvent ? parshaEvent.title : 'See Calendar';
-                    document.getElementById('shabbat-name').innerText = shabbatTitle;
-                    
-                    document.getElementById('fri-tefilla').innerText = timeFormat.format(friMincha);
-                    document.getElementById('sat-tefilla').innerText = timeFormat.format(satMincha);
-
-                    document.getElementById('loading-msg').classList.add('hidden');
-                    document.getElementById('times-grid').classList.remove('hidden');
+                // 3. Update the UI with formatted times
+                
+                // Halakhic Times
+                document.getElementById('candle-time').innerText = timeFormat.format(candleDate);
+                
+                if (havdalahEvent) {
+                    const havDate = new Date(havdalahEvent.date);
+                    document.getElementById('havdalah-time').innerText = timeFormat.format(havDate);
                 }
-            } catch (e) {
-                console.error(e);
-                document.getElementById('loading-msg').innerText = "Visit hebcal.com for Shabbat times.";
+
+                // Parsha & Shabbat Name
+                document.getElementById('parsha-name').innerText = parshaEvent ? parshaEvent.title : 'Check Calendar';
+                document.getElementById('shabbat-name').innerText = shabbatTitle;
+                
+                // Congregation Tefilla Times
+                document.getElementById('fri-tefilla').innerText = timeFormat.format(friMincha);
+                document.getElementById('sat-tefilla').innerText = timeFormat.format(satMincha);
+
+                // Reveal the grid and hide the loading message
+                document.getElementById('loading-msg').classList.add('hidden');
+                document.getElementById('times-grid').classList.remove('hidden');
             }
+        } catch (e) {
+            console.error("Hebcal Fetch Error:", e);
+            document.getElementById('loading-msg').innerText = "Unable to load times. Please check hebcal.com for Cleveland.";
         }
-        window.addEventListener('DOMContentLoaded', fetchShabbatTimes);
-    </script>
+    }
+    
+    // Run function on load
+    window.addEventListener('DOMContentLoaded', fetchShabbatTimes);
+</script>
 </body>
 </html>
