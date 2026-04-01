@@ -3,219 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleveland Sephardic Congregation | Your Sephardic Home</title>
+    <title>Cleveland Sephardic Community</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Lora', serif; background-color: #fdfcf0; color: #2d2d2d; }
-        h1, h2, h3, .shul-font { font-family: 'Playfair Display', serif; color: #1a365d; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: #1a365d; }
         .sephardic-pattern {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 30-15 30L15 30z' fill='%23b4975a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
         .border-decorative { border: 4px double #b4975a; }
-        .btn-traditional { background-color: #1a365d; border: 1px solid #b4975a; color: #fdfcf0; transition: all 0.3s; text-align: center; }
-        .btn-traditional:hover { background-color: #b4975a; color: white; }
-        .nav-link { hover:text-amber-700; transition: color 0.2s; white-space: nowrap; }
+        .holiday-card { background: #fffdf5; border-left: 4px solid #b4975a; padding: 15px; margin-bottom: 10px; }
     </style>
 </head>
 <body class="sephardic-pattern">
 
-    <!-- Top Navigation Menu -->
-    <nav class="bg-[#fdfcf0]/95 backdrop-blur-sm border-b border-stone-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-wrap justify-center md:justify-between items-center py-4 gap-4">
-                <a href="#" class="text-xl font-bold text-blue-900 tracking-tighter uppercase">Cleveland Sephardic</a>
-                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-widest text-stone-600">
-                    <a href="#" class="nav-link text-amber-800">Home</a>
-                    <a href="#holidays" class="nav-link">Holidays</a>
-                    <a href="#" class="nav-link">Sephardic vs Mizrachi</a>
-                    <a href="#" class="nav-link">Ben Ish Hai</a>
-                    <a href="#location" class="nav-link">Location</a>
-                </div>
-            </div>
-            <!-- Submenu for Holidays (Optional/Mobile friendly) -->
-            <div class="flex flex-wrap justify-center gap-4 pb-3 text-[10px] uppercase text-stone-400">
-                <a href="#">Rosh Hashana</a><span>•</span>
-                <a href="#">Yom Kippur</a><span>•</span>
-                <a href="#">Sukkot</a><span>•</span>
-                <a href="#">Simhat Torah</a><span>•</span>
-                <a href="#">High Holiday FAQ</a>
+    <!-- Dynamic Observance Banner (Shows only on holidays/fasts) -->
+    <div id="observance-banner" class="hidden bg-amber-600 text-white text-center py-2 px-4 font-bold uppercase tracking-widest text-sm border-b border-amber-700">
+        Today is: <span id="today-holiday-name"></span>
+    </div>
+
+    <nav class="bg-white/90 border-b border-stone-200 sticky top-0 z-50 py-4">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="font-bold text-blue-900 tracking-tighter uppercase">Cleveland Sephardic</a>
+            <div class="hidden md:flex gap-6 text-xs font-bold uppercase text-stone-600">
+                <a href="#schedule" class="hover:text-amber-800">Tefilla Times</a>
+                <a href="#location" class="hover:text-amber-800">Location</a>
+                <a href="https://venmo.com/clesephardic" class="text-amber-800">Donate</a>
             </div>
         </div>
     </nav>
 
     <header class="py-12 text-center">
-        <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">ק"ק כליבלנד</h1>
-        <h2 class="text-2xl md:text-3xl text-stone-600 uppercase tracking-widest px-4">Cleveland Sephardic Community</h2>
+        <h1 class="text-4xl md:text-6xl font-black mb-2 tracking-tight">ק"ק כליבלנד</h1>
+        <h2 class="text-2xl text-stone-600 uppercase tracking-widest">Cleveland Sephardic Community</h2>
         <p class="italic text-amber-800 mt-4 text-xl">"Your Sephardic Home in Cleveland"</p>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6">
+    <main class="max-w-5xl mx-auto px-6 pb-20">
         
-        <!-- About Section -->
-        <section class="mb-16 grid md:grid-cols-3 gap-10 items-center">
-            <div class="md:col-span-2 space-y-4 text-lg text-stone-700 leading-relaxed">
-                <p>
-                    Cleveland Sephardic Community is a warm, family-oriented Sephardic minyan in Cleveland. We follow a <strong>Moroccan siddur</strong> while embracing the beautiful diversity of Sephardic and Mizrahi traditions. 
-                </p>
-                <p>
-                    Our congregation is a mosaic of the Jewish world, with families hailing from <strong>Bukhara, Morocco, Iraq, Turkey, Ethiopia, Persia</strong>, and beyond. Whether you are a local family, a student, or a visitor, we offer a welcoming place to pray and connect with authentic Sephardic tradition.
-                </p>
-            </div>
-            <div class="bg-white border-decorative p-6 text-center shadow-sm">
-                <h3 class="text-xl font-bold mb-2">Get Involved</h3>
-                <p class="text-sm text-stone-600 mb-4 italic">
-                    "Your participation strengthens our community."
-                </p>
-                <p class="text-sm text-stone-700 mb-4">
-                    If you would like an aliyah, to lead part of tefilla, or to sponsor a kiddush, please reach out.
-                </p>
-                <a href="mailto:contact@clesephardic.com" class="text-blue-900 font-bold underline">Email Us</a>
-            </div>
-        </section>
+        <!-- HOLIDAY SCHEDULE SECTION -->
+        <section id="schedule" class="mb-16">
+            <div class="border-decorative bg-white p-6 md:p-10 shadow-lg">
+                <h3 class="text-center text-3xl mb-2">Pesach Schedule 5786</h3>
+                <p id="parsha-display" class="text-center text-stone-500 italic mb-8 italic">Parashat Tzav</p>
 
-        <!-- Dynamic Shabbat & Tefilla Times Section -->
-        <section id="times" class="mb-16">
-            <div class="border-decorative bg-white p-8 md:p-12 shadow-md relative">
-                <h3 class="text-center text-3xl mb-2">Shabbat Schedule</h3>
-                <p id="shabbat-name" class="text-center text-amber-800 font-bold text-lg mb-8 uppercase tracking-widest">--</p>
-                
-                <div id="loading-msg" class="text-center italic text-stone-400 py-10">Fetching this week's times...</div>
-                
-                <div id="times-grid" class="hidden grid md:grid-cols-2 gap-12">
-                    <!-- Column 1: Halakhic Times -->
-                    <div class="space-y-6 border-r border-stone-100 pr-0 md:pr-10">
-                        <div class="flex justify-between items-end border-b border-stone-100 pb-2">
-                            <span class="text-stone-500 uppercase text-xs font-bold">Candle Lighting</span>
-                            <span id="candle-time" class="text-2xl font-bold text-blue-900">--:--</span>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-stone-100 pb-2">
-                            <span class="text-stone-500 uppercase text-xs font-bold">Torah Portion</span>
-                            <span id="parsha-name" class="text-lg font-bold text-stone-800 italic">--</span>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-stone-100 pb-2">
-                            <span class="text-stone-500 uppercase text-xs font-bold">Havdalah</span>
-                            <span id="havdalah-time" class="text-2xl font-bold text-blue-900">--:--</span>
-                        </div>
+                <!-- Static Special Times for Pesach -->
+                <div class="space-y-4 mb-10">
+                    <div class="holiday-card">
+                        <div class="flex justify-between font-bold text-blue-900"><span>Wed April 1 - Erev Pesach</span> <span>7:30pm</span></div>
+                        <p class="text-sm">Mincha followed by Arbit of Pesach</p>
                     </div>
+                    <div class="holiday-card">
+                        <div class="flex justify-between font-bold text-blue-900"><span>Thu April 2 - 1st Day Pesach</span> <span>9:00am & 7:30pm</span></div>
+                        <p class="text-sm">Shaharit • Mincha followed by Arbit. <span class="text-amber-800">Candles after 8:34pm.</span></p>
+                    </div>
+                    <div class="holiday-card">
+                        <div class="flex justify-between font-bold text-blue-900"><span>Fri April 3 - 2nd Day Pesach</span> <span>9:00am & 7:30pm</span></div>
+                        <p class="text-sm">Shaharit • Mincha followed by Kabbalat Shabbat & Arbit. <span class="text-amber-800 font-bold">Candles at 7:35pm.</span></p>
+                    </div>
+                    <div class="holiday-card">
+                        <div class="flex justify-between font-bold text-blue-900"><span>Sat April 4 - Shabbat Chol Hamoed</span> <span>9:00am & 7:30pm</span></div>
+                        <p class="text-sm">Shaharit • Mincha followed by Arbit. <span class="text-amber-800 italic">Shabbat ends: 8:37pm.</span></p>
+                    </div>
+                </div>
 
-                    <!-- Column 2: Congregation Tefilla -->
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-amber-800 font-bold uppercase text-xs tracking-widest mb-2">Friday Night Minyan</h4>
-                            <div id="fri-tefilla" class="text-3xl font-black text-blue-950">--:--</div>
-                            <p class="text-xs text-stone-500 mt-1 italic">Mincha followed by Kabbalat Shabbat & Arvit (10m before candles)</p>
-                        </div>
-                        <div>
-                            <h4 class="text-amber-800 font-bold uppercase text-xs tracking-widest mb-2">Shabbat Afternoon Mincha</h4>
-                            <div id="sat-tefilla" class="text-3xl font-black text-blue-950">--:--</div>
-                            <p class="text-xs text-stone-500 mt-1 italic">Followed by Seudah Shlishit & Arvit (24h 5m after Fri Mincha)</p>
-                        </div>
+                <!-- Dynamic Halakhic Times List -->
+                <div class="border-t pt-8">
+                    <h4 class="text-center uppercase tracking-widest text-xs font-bold text-stone-400 mb-6">Upcoming Zmanim</h4>
+                    <div id="zmanim-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <!-- Dynamic content goes here -->
+                        <div class="text-center italic text-stone-400 col-span-2">Loading halakhic times...</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Location & Giving -->
-        <section id="location" class="grid md:grid-cols-2 gap-8 mb-16">
-            <div class="bg-stone-100 p-8 border border-stone-200">
-                <h3 class="text-2xl mb-4 italic">Our Location</h3>
-                <p class="font-bold text-blue-900">Waxman Chabad (Lower Level)</p>
-                <p class="text-stone-700">2479 S Green Rd, Beachwood, OH 44122</p>
-                <div class="mt-6">
-                    <a href="https://www.google.com/maps/search/?api=1&query=2479+S+Green+Rd+Beachwood+OH" target="_blank" class="text-sm font-bold text-amber-800 uppercase hover:underline">Get Directions →</a>
+        <section class="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+                <h3 class="text-2xl mb-4 italic text-blue-900">Our Community</h3>
+                <p class="text-stone-700 leading-relaxed">
+                    Located in the lower level of <strong>Waxman Chabad</strong>, we are a warm, family-oriented minyan. We follow a Moroccan siddur while embracing the diversity of our members from Bukhara, Morocco, Iraq, Turkey, Ethiopia, and Persia.
+                </p>
+                <div class="mt-6 p-4 bg-stone-100 border border-stone-200">
+                    <h4 class="font-bold text-sm uppercase">Get Involved</h4>
+                    <p class="text-sm text-stone-600">To request an aliyah, lead tefilla, or sponsor a kiddush, please reach out.</p>
+                    <p class="mt-2 text-sm"><strong>Email:</strong> contact@clesephardic.com</p>
                 </div>
             </div>
-
-            <div class="bg-white p-8 border border-stone-200 shadow-sm flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl mb-4 italic">Support the Community</h3>
-                    <p class="text-stone-600 text-sm mb-6">Your donations support our weekly kiddush, holiday celebrations, and community growth.</p>
+            <div class="space-y-4">
+                <div class="bg-blue-900 text-white p-6 shadow-md">
+                    <h3 class="text-xl text-amber-500 mb-2">Location</h3>
+                    <p>2479 S Green Rd, Beachwood, OH</p>
+                    <p class="text-sm text-blue-200 mt-1">Lower level of Waxman Chabad</p>
                 </div>
-                <div class="space-y-3">
-                    <a href="https://venmo.com/clesephardic" class="btn-traditional block py-3 font-bold">Donate via Venmo</a>
-                </div>
+                <a href="https://venmo.com/clesephardic" class="block bg-amber-600 text-white text-center py-4 font-bold text-lg hover:bg-amber-700 transition">
+                    Donate / Sponsor via Venmo
+                </a>
             </div>
-        </section>
-
-        <!-- Contact Footer Section -->
-        <section class="text-center py-10 border-t border-stone-200">
-            <h3 class="text-xl mb-4 italic">Contact Us</h3>
-            <p class="text-stone-800">Email: <a href="mailto:contact@clesephardic.com" class="font-bold hover:text-amber-800">contact@clesephardic.com</a></p>
-            <p class="text-stone-800">Phone: <span class="font-bold">+1 (617) 631-7117</span></p>
         </section>
     </main>
 
-    <footer class="bg-blue-950 text-stone-400 py-12 text-center text-xs uppercase tracking-widest">
-        <p>© 2024 Cleveland Sephardic Community</p>
-        <p class="mt-2">Beachwood, Ohio | Authentically Sephardic</p>
-    </footer>
+    <script>
+        async function updatePage() {
+            const GEO_ID = '5150529'; // Cleveland
+            // Fetch 1 week of data to cover the Pesach block
+            const url = `https://www.hebcal.com/shabbat?cfg=json&geonameid=${GEO_ID}&M=on&leyning=off`;
 
-<script>
-    async function fetchShabbatTimes() {
-        const GEO_ID = '5150529'; // Cleveland
-        const url = `https://www.hebcal.com/shabbat?cfg=json&geonameid=${GEO_ID}&M=on&leyning=off`;
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-
-            // 1. Find the specific events in the Hebcal items array
-            const candleEvent = data.items.find(i => i.category === 'candles');
-            const havdalahEvent = data.items.find(i => i.category === 'havdalah');
-            const parshaEvent = data.items.find(i => i.category === 'parashat');
-            
-            // Look for a special Shabbat name (like Shabbat HaGadol), otherwise default to "Shabbat"
-            const specialShabbat = data.items.find(i => i.memo && i.memo.includes('Shabbat'));
-            const shabbatTitle = specialShabbat ? specialShabbat.title : "Shabbat";
-
-            if (candleEvent) {
-                // Create a reusable time formatter (e.g., 7:27 PM)
-                const timeFormat = new Intl.DateTimeFormat('en-US', { 
-                    hour: 'numeric', 
-                    minute: '2-digit', 
-                    hour12: true 
-                });
-
-                // Convert ISO strings from API to JavaScript Date objects
-                const candleDate = new Date(candleEvent.date);
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
                 
-                // 2. Calculate Tefilla Times based on your custom logic
-                // Friday Mincha: 10 mins before candles
-                const friMincha = new Date(candleDate.getTime() - (10 * 60 * 1000));
-                // Shabbat Mincha: 24h + 5m after Friday Mincha
-                const satMincha = new Date(friMincha.getTime() + (24 * 60 + 5) * 60 * 1000);
+                const zmanimContainer = document.getElementById('zmanim-list');
+                zmanimContainer.innerHTML = ''; // Clear loader
 
-                // 3. Update the UI with formatted times
-                
-                // Halakhic Times
-                document.getElementById('candle-time').innerText = timeFormat.format(candleDate);
-                
-                if (havdalahEvent) {
-                    const havDate = new Date(havdalahEvent.date);
-                    document.getElementById('havdalah-time').innerText = timeFormat.format(havDate);
+                // 1. Display Current Observance in Banner
+                const todayStr = new Date().toISOString().split('T')[0];
+                const todayHolidays = data.items.filter(i => 
+                    (i.category === 'holiday' || i.category === 'roshchodesh') && 
+                    i.date.startsWith(todayStr)
+                );
+
+                if (todayHolidays.length > 0) {
+                    const banner = document.getElementById('observance-banner');
+                    document.getElementById('today-holiday-name').innerText = todayHolidays.map(h => h.title).join(" / ");
+                    banner.classList.remove('hidden');
                 }
 
-                // Parsha & Shabbat Name
-                document.getElementById('parsha-name').innerText = parshaEvent ? parshaEvent.title : 'Check Calendar';
-                document.getElementById('shabbat-name').innerText = shabbatTitle;
-                
-                // Congregation Tefilla Times
-                document.getElementById('fri-tefilla').innerText = timeFormat.format(friMincha);
-                document.getElementById('sat-tefilla').innerText = timeFormat.format(satMincha);
+                // 2. Update Parsha
+                const parsha = data.items.find(i => i.category === 'parashat');
+                if (parsha) document.getElementById('parsha-display').innerText = parsha.title;
 
-                // Reveal the grid and hide the loading message
-                document.getElementById('loading-msg').classList.add('hidden');
-                document.getElementById('times-grid').classList.remove('hidden');
+                // 3. Dynamic Zmanim List (Candles and Havdalah)
+                // Filter for all candle lighting and havdalah events in the next few days
+                const timingEvents = data.items.filter(i => i.category === 'candles' || i.category === 'havdalah');
+
+                timingEvents.forEach(event => {
+                    const eventDate = new Date(event.date);
+                    const dayName = eventDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                    
+                    const div = document.createElement('div');
+                    div.className = "flex justify-between border-b border-stone-100 pb-2";
+                    
+                    // Format the title (remove "Candle lighting: " or "Havdalah (42 min): " for cleaner look)
+                    let cleanTitle = event.title.split(':')[0];
+                    let cleanTime = event.title.split(':')[1];
+
+                    div.innerHTML = `
+                        <span class="text-stone-500 font-bold uppercase text-[10px] tracking-widest">${dayName} - ${cleanTitle}</span>
+                        <span class="font-bold text-blue-900">${cleanTime}</span>
+                    `;
+                    zmanimContainer.appendChild(div);
+                });
+
+            } catch (e) {
+                console.error("Error:", e);
             }
-        } catch (e) {
-            console.error("Hebcal Fetch Error:", e);
-            document.getElementById('loading-msg').innerText = "Unable to load times. Please check hebcal.com for Cleveland.";
         }
-    }
-    
-    // Run function on load
-    window.addEventListener('DOMContentLoaded', fetchShabbatTimes);
-</script>
+        window.addEventListener('DOMContentLoaded', updatePage);
+    </script>
 </body>
 </html>
