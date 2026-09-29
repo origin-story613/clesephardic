@@ -1,0 +1,41 @@
+<script>
+    async function updateZmanim() {
+        const GEO_ID = '5150529';
+        const url = `https://www.hebcal.com/shabbat?cfg=json&geonameid=${GEO_ID}&M=on&s=on`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            const zmanimContainer = document.getElementById('zmanim-list');
+            zmanimContainer.innerHTML = '';
+
+            const timeFormat = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+            const todayStr = new Date().toISOString().split('T')[0];
+            const observances = data.items.filter(i => (i.category === 'holiday' || i.category === 'roshchodesh') && i.date.startsWith(todayStr));
+            if (observances.length > 0) {
+                const banner = document.getElementById('observance-banner');
+                document.getElementById('today-holiday-name').innerText = observances.map(h => h.title).join(" / ");
+                banner.classList.remove('hidden');
+            }
+
+            const parsha = data.items.find(i => i.category === 'parashat');
+            if (parsha) document.getElementById('parsha-display').innerText = parsha.title;
+
+            const timingEvents = data.items.filter(i => i.category === 'candles' || i.category === 'havdalah');
+            timingEvents.forEach(event => {
+                const eventDate = new Date(event.date);
+                const dayLabel = eventDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                const eventType = event.category === 'candles' ? 'Candles' : 'Havdalah';
+                const row = document.createElement('div');
+                row.className = "flex justify-between items-center border-b border-white/10 pb-2";
+                row.innerHTML = `<div class="flex flex-col"><span class="text-[10px] uppercase opacity-50 tracking-widest">${dayLabel}</span><span class="text-xs font-bold uppercase text-amber-500 tracking-wider">${eventType}</span></div><span class="text-xl font-bold tracking-tight">${timeFormat.format(eventDate)}</span>`;
+                zmanimContainer.appendChild(row);
+            });
+        } catch (e) {
+            console.error(e);
+            document.getElementById('zmanim-list').innerHTML = "<p class='text-xs italic opacity-50'>Check Hebcal.com for times.</p>";
+        }
+    }
+    window.addEventListener('DOMContentLoaded', updateZmanim);
+</script>

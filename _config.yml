@@ -1,0 +1,11 @@
+title: Cleveland Sephardic Community
+tagline: "Your Sephardic Home in Cleveland"
+description: >-
+  A warm, family-oriented Sephardic minyan in Beachwood, Ohio, inside the
+  Waxman Chabad, following a Moroccan siddur and embracing the diversity of
+  Sephardic and Mizrahi tradition.
+url: "https://clesephardic.com"
+baseurl: ""
+
+exclude:
+  - README.md

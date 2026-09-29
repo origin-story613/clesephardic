@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}{% if page.title %} | {{ page.title }}{% else %} | Your Sephardic Home{% endif %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lora', serif; background-color: #fdfcf0; color: #2d2d2d; }
+        h1, h2, h3, .shul-font { font-family: 'Playfair Display', serif; color: #1a365d; }
+        .sephardic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 30-15 30L15 30z' fill='%23b4975a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .border-decorative { border: 4px double #b4975a; }
+        .service-row { border-bottom: 1px solid #e5e7eb; padding: 10px 0; display: flex; justify-content: space-between; align-items: baseline; }
+        .service-row:last-child { border-bottom: none; }
+        .venmo-btn { background-color: #008CFF; color: white; transition: all 0.3s; }
+        .venmo-btn:hover { background-color: #0074d4; }
+    </style>
+</head>
+<body class="sephardic-pattern min-h-screen">
+
+    {% include observance-banner.html %}
+    {% include nav.html %}
+    {% include site-header.html %}
+
+    <main class="max-w-6xl mx-auto px-6 pb-20">
+        {{ content }}
+    </main>
+
+    {% include footer.html %}
+    {% include zmanim-script.html %}
+</body>
+</html>
