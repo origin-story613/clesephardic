@@ -26,10 +26,12 @@ layout: default
             </div>
             <div>
                 <h4 class="font-bold text-amber-800 uppercase tracking-widest text-sm mb-2">Shabbat</h4>
+                {% if site.data.schedule.shaharit_time and site.data.schedule.shaharit_time != "" %}
                 <div class="service-row">
                     <span class="text-stone-700">Shaharit Morning Service</span>
                     <span class="font-bold text-blue-950">{{ site.data.schedule.shaharit_time }}</span>
                 </div>
+                {% endif %}
                 <div class="service-row">
                     <span class="text-stone-700 italic">Minha followed by Arbit</span>
                     <span id="shabbat-mincha-time" class="font-bold text-blue-950">&mdash;</span>
