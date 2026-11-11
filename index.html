@@ -12,6 +12,31 @@ layout: default
         </div>
 
         <div class="space-y-12">
+            {% if site.data.schedule.mode == 'weekly' %}
+            <!-- Standing weekly rule: Friday tefila = candle lighting rounded
+                 down to the nearest 5 minutes; Shabbat Mincha = that time
+                 minus 15 minutes. Computed live in zmanim-script.html. -->
+            <div>
+                <h4 class="font-bold text-amber-800 uppercase tracking-widest text-sm mb-2">Erev Shabbat</h4>
+                <div class="service-row">
+                    <span class="text-stone-700 italic">Minha followed by Kabbalat Shabbat and Arbit</span>
+                    <span id="friday-tefila-time" class="font-bold text-blue-950">&mdash;</span>
+                </div>
+                <p id="friday-candle-note" class="text-[11px] text-amber-700 mt-2 font-bold uppercase tracking-wide italic"></p>
+            </div>
+            <div>
+                <h4 class="font-bold text-amber-800 uppercase tracking-widest text-sm mb-2">Shabbat</h4>
+                <div class="service-row">
+                    <span class="text-stone-700">Shaharit Morning Service</span>
+                    <span class="font-bold text-blue-950">{{ site.data.schedule.shaharit_time }}</span>
+                </div>
+                <div class="service-row">
+                    <span class="text-stone-700 italic">Minha followed by Arbit</span>
+                    <span id="shabbat-mincha-time" class="font-bold text-blue-950">&mdash;</span>
+                </div>
+                <p id="shabbat-havdalah-note" class="text-[11px] text-stone-500 mt-2 italic font-bold uppercase tracking-wide"></p>
+            </div>
+            {% else %}
             {% for day in site.data.schedule.days %}
             <div>
                 <h4 class="font-bold text-amber-800 uppercase tracking-widest text-sm mb-2">{{ day.date }}</h4>
@@ -26,6 +51,7 @@ layout: default
                 {% endif %}
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 

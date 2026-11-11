@@ -32,6 +32,33 @@
                 row.innerHTML = `<div class="flex flex-col"><span class="text-[10px] uppercase opacity-50 tracking-widest">${dayLabel}</span><span class="text-xs font-bold uppercase text-amber-500 tracking-wider">${eventType}</span></div><span class="text-xl font-bold tracking-tight">${timeFormat.format(eventDate)}</span>`;
                 zmanimContainer.appendChild(row);
             });
+
+            // Standing weekly rule: Friday tefila = candle lighting rounded
+            // down to the nearest 5 minutes; Shabbat Mincha = that time
+            // minus 15 minutes. In effect until holidays / the next clock change.
+            const fridayTefilaEl = document.getElementById('friday-tefila-time');
+            if (fridayTefilaEl) {
+                const candles = data.items.find(i => i.category === 'candles');
+                const havdalah = data.items.find(i => i.category === 'havdalah');
+                if (candles) {
+                    const roundDownTo5 = (date) => {
+                        const d = new Date(date);
+                        d.setMinutes(d.getMinutes() - (d.getMinutes() % 5), 0, 0);
+                        return d;
+                    };
+                    const candleTime = new Date(candles.date);
+                    const fridayTefila = roundDownTo5(candleTime);
+                    const shabbatMincha = new Date(fridayTefila.getTime() - 15 * 60000);
+
+                    fridayTefilaEl.innerText = timeFormat.format(fridayTefila);
+                    document.getElementById('friday-candle-note').innerText = `Light candles at ${timeFormat.format(candleTime)}`;
+                    const shabbatMinchaEl = document.getElementById('shabbat-mincha-time');
+                    if (shabbatMinchaEl) shabbatMinchaEl.innerText = timeFormat.format(shabbatMincha);
+                    if (havdalah) document.getElementById('shabbat-havdalah-note').innerText = `Shabbat ends at ${timeFormat.format(new Date(havdalah.date))}`;
+                } else {
+                    fridayTefilaEl.innerText = "Check Hebcal.com";
+                }
+            }
         } catch (e) {
             console.error(e);
             document.getElementById('zmanim-list').innerHTML = "<p class='text-xs italic opacity-50'>Check Hebcal.com for times.</p>";

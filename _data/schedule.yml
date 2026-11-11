@@ -1,73 +1,17 @@
-period: "Tishrei 5787"
-parsha: "Chol HaMoed Sukkot — Reading from Parashat Pinchas (Sukkot Offerings)"
+# mode: "weekly" uses the standing rule below and computes Friday/Shabbat
+# tefila times live from Hebcal's candle-lighting time. Switch to "holiday"
+# and fill in `days` (see git history for examples) when a holiday schedule
+# needs to override the regular weekly pattern.
+mode: weekly
+period: "Weekly Tefila Schedule"
+parsha: "This Week's Parsha"
 
-days:
-  - date: "Friday Sept 25 — Erev Sukkot"
-    services:
-      - label: "Minha followed by Arbit"
-        time: "6:45 PM"
-        italic: true
+# Standing rule (in effect until holidays and/or the next clock change):
+# - Friday night tefila = candle lighting time, rounded DOWN to the nearest
+#   5 minutes (e.g. 5:47 -> 5:45, 5:02 -> 5:00)
+# - Shabbat Mincha = that same Friday time, minus 15 minutes
+# Both are computed in _includes/zmanim-script.html from the live Hebcal
+# candle-lighting time. Shaharit below is the one fixed, manually-set time.
+shaharit_time: "9:00 AM"
 
-  - date: "Saturday Sept 26 — 1st Day Sukkot"
-    services:
-      - label: "Shaharit Morning Service"
-        time: "9:00 AM"
-      - label: "Minha followed by Arbit"
-        time: "6:40 PM"
-        italic: true
-    note: "Light candles no earlier than 7:59 PM"
-    note_style: amber
-
-  - date: "Sunday Sept 27 — 2nd Day Sukkot"
-    services:
-      - label: "Shaharit Morning Service"
-        time: "9:00 AM"
-      - label: "Minha followed by Arbit"
-        time: "6:50 PM"
-        italic: true
-    note: "Hag ends no earlier than 7:58 PM"
-    note_style: stone
-
-  - date: "Friday Oct 2 — Hoshana Rabah"
-    services:
-      - label: "Shaharit of Hoshana Rabah"
-        time: "6:45 AM"
-      - label: "Minha followed by Kabbalat Shabbat and Arbit"
-        time: "6:45 PM"
-        italic: true
-
-  - date: "Saturday Oct 3 — Shmini Atzeret"
-    services:
-      - label: "Shaharit Morning Service"
-        time: "9:00 AM"
-      - label: "Minha followed by Arbit"
-        time: "6:30 PM"
-        italic: true
-    note: "Light candles no earlier than 7:47 PM"
-    note_style: amber
-
-  - date: "Sunday Oct 4 — Simchat Torah"
-    services:
-      - label: "Shaharit Morning Service"
-        time: "8:45 AM"
-      - label: "Minha followed by Arbit"
-        time: "6:40 PM"
-        italic: true
-    note: "Hag ends no earlier than 7:46 PM"
-    note_style: stone
-
-  - date: "Friday Oct 9 — Erev Shabbat"
-    services:
-      - label: "Minha followed by Kabbalat Shabbat and Arbit"
-        time: "6:35 PM"
-        italic: true
-
-  - date: "Saturday Oct 10 — Shabbat"
-    services:
-      - label: "Shaharit Morning Service"
-        time: "8:45 AM"
-      - label: "Minha followed by Arbit"
-        time: "6:20 PM"
-        italic: true
-    note: "Shabbat ends no earlier than 7:36 PM"
-    note_style: stone
+days: []
